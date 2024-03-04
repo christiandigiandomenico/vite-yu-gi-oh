@@ -2,13 +2,15 @@
 
 import {store} from '../store.js';
 
-import AppCard from './AppCard.vue'
+import AppCard from './AppCard.vue';
+import AppCounter from './AppCounter.vue'
 
 export default {
     name: 'CardList',
 
     components:  {
         AppCard,
+        AppCounter
     },
 
     data() {
@@ -23,11 +25,17 @@ export default {
 
     <div class="container">
 
-        <ul>
+        <div class="card-container">
+
+            <AppCounter></AppCounter>
+
+            <ul>
             
-            <AppCard v-for="currentCard in store.cards" :card="currentCard"></AppCard>
+                <AppCard v-for="currentCard in store.cards" :card="currentCard"></AppCard>
            
-        </ul>
+            </ul>
+
+        </div>
 
     </div>
 
@@ -38,6 +46,19 @@ export default {
 .container {
     height: calc(100vh - 100px);
     background-color: #d48f38;
+    padding: 20px;
+
+    .card-container {
+        background-color: white;
+        padding: 50px
+    }
+
+    ul {
+        list-style-type: none;
+        display: flex;
+        flex-wrap: wrap;
+        
+    }
 };
 
 </style>
