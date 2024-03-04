@@ -14,6 +14,8 @@ export default {
         cards: [],
 
         store,
+
+        isLoading: true,
       }
     },
 
@@ -22,6 +24,7 @@ export default {
     axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=15&offset=0').then(res => {
         console.log(res.data.data)
         this.store.cards = res.data.data
+        this.isLoading = false;
     })
 
   },
@@ -37,12 +40,25 @@ export default {
 
 <template>
 
-<AppNav></AppNav>
+<div v-if="isLoading" class="splash-page">
+  <img src="../public/yu-gi-oh.png" alt="Yu-Gi-Oh Logo">
+  <h1>Loading...</h1>
+</div>
 
-<CardList></CardList>
+<div v-else>
+
+  <AppNav></AppNav>
+
+  <CardList></CardList>
+
+</div>
   
 </template>
 
 <style>
+
+.splash-page {
+  text-align: center;
+}
 
 </style>
