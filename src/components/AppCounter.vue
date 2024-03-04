@@ -33,7 +33,7 @@ export default {
     width: 100%;
     font-size: 20px;
     font-weight: bold;
-    padding-left: 20px;
+    padding: 15px;
 }
 
 </style>
