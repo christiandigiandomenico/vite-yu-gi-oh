@@ -6,6 +6,7 @@ import {store} from './store'
 
 import AppNav from './components/AppNav.vue';
 import CardList from './components/CardList.vue'
+import AppSelector from './components/AppSelector.vue'
 
 export default {
 
@@ -28,10 +29,26 @@ export default {
     })
 
   },
+
+  methods: {
+
+    searchCardByArchetype() {
+
+console.log("Chiamato metodo")
+
+axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=15&offset=0&archetype=' + this.store.archetypeCard).then(res => {
+    console.log(res.data.data)
+    this.store.cards = res.data.data
+})
+
+}
+
+  },
   
   components: {
     AppNav,
-    CardList
+    CardList,
+    AppSelector,
   }
 
 }
@@ -48,6 +65,8 @@ export default {
 <div v-else>
 
   <AppNav></AppNav>
+
+  <AppSelector @search="searchCardByArchetype()"></AppSelector>
 
   <CardList></CardList>
 

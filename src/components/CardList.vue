@@ -6,7 +6,6 @@ import {store} from '../store.js';
 
 import AppCard from './AppCard.vue';
 import AppCounter from './AppCounter.vue'
-import AppSelector from './AppSelector.vue'
 
 export default {
     name: 'CardList',
@@ -14,7 +13,6 @@ export default {
     components:  {
         AppCard,
         AppCounter,
-        AppSelector
     },
 
     methods: {
@@ -23,7 +21,6 @@ searchArchetype() {
 
   axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php')
     .then(res => {
-      console.log(res.data)
 
       this.store.archetype = res.data;
     });
@@ -50,8 +47,6 @@ created() {
     <div class="container">
 
         <div class="card-container">
-
-            <AppSelector @search="searchArchetype()"></AppSelector>
 
             <AppCounter></AppCounter>
 
