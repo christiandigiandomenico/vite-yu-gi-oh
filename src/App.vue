@@ -34,10 +34,7 @@ export default {
 
     searchCardByArchetype() {
 
-console.log("Chiamato metodo")
-
-axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=15&offset=0&archetype=' + this.store.archetypeCard).then(res => {
-    console.log(res.data.data)
+axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=' + this.store.archetypeCard).then(res => {
     this.store.cards = res.data.data
 })
 
