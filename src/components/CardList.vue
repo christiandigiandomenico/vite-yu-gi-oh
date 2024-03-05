@@ -1,17 +1,41 @@
 <script>
 
+import axios from 'axios';
+
 import {store} from '../store.js';
 
 import AppCard from './AppCard.vue';
 import AppCounter from './AppCounter.vue'
+import AppSelector from './AppSelector.vue'
 
 export default {
     name: 'CardList',
 
     components:  {
         AppCard,
-        AppCounter
+        AppCounter,
+        AppSelector
     },
+
+    methods: {
+
+searchArchetype() {
+
+  axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php')
+    .then(res => {
+      console.log(res.data)
+
+      this.store.archetype = res.data;
+    });
+
+  console.log("Ricerca percepita")
+},
+
+},
+
+created() {
+    this.searchArchetype();
+  },
 
     data() {
         return  {
@@ -26,6 +50,8 @@ export default {
     <div class="container">
 
         <div class="card-container">
+
+            <AppSelector @search="searchArchetype()"></AppSelector>
 
             <AppCounter></AppCounter>
 
